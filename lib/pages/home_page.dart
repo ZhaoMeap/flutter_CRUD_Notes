@@ -1,48 +1,59 @@
 // lib/page/home_page.dart
 
 import 'package:flutter/material.dart';
-import 'package:crud_demo/model/employee.dart'; // 請替換成您的員工模型路徑
-import 'package:crud_demo/pages/schedule_page.dart'; // 請替換成您的排班頁面路徑
-import 'package:crud_demo/pages/schedule_detail_page.dart'; // 請替換成您的排班詳細頁面路徑
 
 class HomePage extends StatelessWidget {
-  final List<Employee> employees;
-
-  HomePage({required this.employees});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Employee List'),
+        title: Text('龍吟後台管理系統'),
       ),
-      body: ListView.builder(
-        itemCount: employees.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(employees[index].name),
-            subtitle: Text('職稱: ${employees[index].title}'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ScheduleDetailPage(employee: employees[index]),
-                ),
-              );
-            },
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SchedulePage(employees: employees),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          OutlinedButton(
+            onPressed: () {},
+            child: Text('產品管理'),
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  EdgeInsets.only(left: 100, right: 100)),
             ),
-          );
-        },
-        child: Icon(Icons.schedule),
+          ),
+          OutlinedButton(onPressed: () {}, child: Text('員工管理')),
+        ],
+      )),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                '這邊放使用者大頭照',
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('個人資料'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('設定'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('登出'),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
